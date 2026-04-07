@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ZKTeco to CS Form 48 DTR Converter</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="gov-topline"></div>
+
+<div class="app">
+    <header class="hero no-print">
+        <div class="hero-left">
+            <div class="seal-wrap">
+                <div class="seal">Isla</div>
+            </div>
+
+            <div class="hero-text">
+                <span class="eyebrow">Batang Taga Isla!</span>
+                <h1>ZKTeco to CS Form No. 48 Converter</h1>
+                <p>
+                    This converter is designed and developed to efficiently transform ZKTeco biometric Daily Time Record (DTR) files
+                    into Civil Service Form No. 48. The system is carefully optimized to work exclusively with ZKTeco biometric devices,
+                    guaranteeing seamless compatibility, precise output, and dependable performance. At this time, support for other
+                    biometric brands is not available, as the system is specifically tailored to maintain the integrity and
+                    standardization of ZKTeco-generated data.
+                </p>
+
+                <div class="hero-badges">
+                    <span class="badge">ZKTeco</span>
+                    <span class="badge">Hikvision (Soon)</span>
+                    <span class="badge">Other Brands (Soon)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+
+    <section class="topbar no-print">
+<div class="section-title">
+    <h2>Document Controls</h2>
+    <p>Upload your attendance file, choose employees, set the schedule options, generate and download the printable DTR output.</p>
+</div>
+
+<div class="controls-panel">
+    <div class="controls-card controls-card-main">
+        <div class="card-heading">
+            <h3>File Actions</h3>
+        </div>
+
+        <div class="controls">
+            <label class="file-upload">
+<input type="file" id="fileInput" accept=".xlsx,.xls" />
+
+<div class="file-upload-ui">
+    <div class="upload-icon">⬆</div>
+    <div class="upload-text">
+        <strong>Upload your file here</strong>
+        <span>.xlsx or .xls files only</span>
+    </div>
+</div>
+</label>
+
+            <!-- This is a single-line comment <button id="generateBtn">Generate DTR</button> -->
+            <button id="generateAllBtn">Convert DTR</button>
+            <button id="downloadBtn">Download Generated Excel</button>
+            <button id="printBtn">Print</button>
+        </div>
+    </div>
+
+    <div class="controls-card controls-card-settings">
+        <div class="card-heading">
+            <h3>Form Settings</h3>
+            
+        </div>
+
+        <div class="settings">
+            <div class="setting-group compact-group">
+                <label for="monthInput">Month</label>
+                <input type="month" id="monthInput" />
+            </div>
+
+            <div class="setting-group compact-group">
+<label for="employeeTypeOverride">Employee Type</label>
+<select id="employeeTypeOverride" class="placeholder-select">
+    <option value="" disabled>Select Employee Type</option>
+    <option value="auto" selected>Auto Detect (by Department)</option>
+    <option value="teaching">Teaching Personnel</option>
+    <option value="nonteaching">Non-Teaching Personnel</option>
+</select>
+</div>
+
+<div class="setting-group compact-group">
+                <label for="inChargeName">Officer In Charge</label>
+                <input type="text" id="inChargeName" placeholder="e.g. Juan Dela Cruz" />
+            </div>
+
+            
+            <div class="setting-group compact-group">
+<label for="regularHours">Regular days</label>
+<input 
+    type="text" 
+    id="regularHours" 
+    placeholder="Automatically set based on employee type" 
+/>
+</div>
+
+            <div class="setting-group compact-group">
+                <label for="saturdayHours">Saturdays</label>
+                <input type="text" id="saturdayHours" placeholder="Optional schedule" />
+            </div>
+
+            <div class="setting-group compact-group">
+                <label for="paperSize">Paper Size</label>
+                <select id="paperSize">
+                    <option value="legal">Legal</option>
+                    <option value="folio">Folio</option>
+                    <option value="a4" selected>A4</option>
+                </select>
+            </div>
+
+            <div class="setting-group employee-picker-group full-width-group">
+<label>Employees</label>
+
+<div class="employee-picker-card">
+    <div class="employee-picker-toolbar">
+        <div class="employee-picker-title">
+            <strong>Employee List</strong>
+            <span>Select one or more employees</span>
+        </div>
+
+        <div class="employee-actions">
+            <button type="button" id="selectAllEmployeesBtn">Select All</button>
+            <button type="button" id="clearAllEmployeesBtn">Clear All</button>
+        </div>
+    </div>
+
+    <div class="employee-table">
+        <div class="employee-table-head">
+            <div class="employee-col-check">Select</div>
+            <div class="employee-col-name">Full Name</div>
+        </div>
+
+        <div id="employeeCheckboxList" class="employee-table-body"></div>
+    </div>
+</div>
+</div>
+    </div>
+</div>
+
+<div id="status" class="status">
+    <div class="status-overlay"></div>
+
+    <div class="status-modal">
+        <div class="status-icon">ℹ️</div>
+        <div class="status-message">Message here</div>
+        <button class="status-close">OK</button>
+    </div>
+</div>
+</section>
+
+    <section class="preview-shell">
+        <div class="preview-header no-print">
+            <h2>Preview Area</h2>
+            <p>Your generated Civil Service Form No. 48 pages will appear below.</p>
+        </div>
+
+        <div id="previewArea"></div>
+    </section>
+
+    <footer class="site-footer no-print">
+        <p> --Batang Taga Isla, Una Sa Edukasyon!--</p>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver/dist/FileSaver.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
