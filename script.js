@@ -432,7 +432,7 @@ function assignTimesToSlots(times, department = "") {
         }
         return "";
     }
-    
+
 
    // Slot 1 = Morning In -> earliest within AM IN window
 amIn = firstUnusedInRange(schedule.slot1Start, schedule.slot1End);
@@ -1038,7 +1038,30 @@ async function downloadExcel() {
                 saturdayHours,
                 inChargeName
             });
+
+
+// 🔒 STEP 1: Lock all cells
+
+await ws.protect("DepedCamiguin2026", {
+    selectLockedCells: false,
+    selectUnlockedCells: false,
+    formatCells: false,
+    formatColumns: false,
+    formatRows: false,
+    insertColumns: false,
+    insertRows: false,
+    insertHyperlinks: false,
+    deleteColumns: false,
+    deleteRows: false,
+    sort: false,
+    autoFilter: false,
+    pivotTables: false,
+    spinCount: 1000
+});
+
+
         }
+
 
         const buffer = await workbook.xlsx.writeBuffer();
         const filename =
