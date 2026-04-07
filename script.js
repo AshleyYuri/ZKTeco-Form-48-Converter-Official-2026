@@ -432,6 +432,7 @@ function assignTimesToSlots(times, department = "") {
         }
         return "";
     }
+    
 
    // Slot 1 = Morning In -> earliest within AM IN window
 amIn = firstUnusedInRange(schedule.slot1Start, schedule.slot1End);
@@ -447,6 +448,8 @@ pmOut = lastUnusedInRange(schedule.slot4Start, schedule.slot4End);
 
     return [amIn, amOut, pmIn, pmOut];
 }
+
+
 
 function mapFourSlotsToForm48(slots, department = "") {
     const amArrival = slots[0] || "";
