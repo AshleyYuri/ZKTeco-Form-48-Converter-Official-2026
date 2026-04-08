@@ -1040,6 +1040,7 @@ async function downloadExcel() {
             });
 
 
+            
 // 🔒 STEP 1: Lock all cells
 
 await ws.protect("DepedCamiguin2026", {
